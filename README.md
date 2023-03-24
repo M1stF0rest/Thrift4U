@@ -1,57 +1,48 @@
 The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
 
-(__TODO__: your project name)
-
-# Shoppy Shoperson 
+# Thrift4U
 
 ## Overview
 
-(__TODO__: a brief one or two paragraph, high-level description of your project)
+Students are usually short of budgets, so buying second-hand stuff becomes a temptating option for many of them. For students in China, they often use Wechat groups to do this, which is hard to track past records or search items by categories.
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
-
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
+Thrift4U is a web app that functions as a platform for information of second-hand items for sale. Users can register and login. Once they log in, they can search the posted second-hand items and can filter the search options as they want. Moreover, if they want to sell somethimng that they don't need, they can also post them on this web app and manage them later on.
 
 
 ## Data Model
-
-(__TODO__: a description of your application's data and their relationships to each other) 
 
 The application will store Users, Lists and Items
 
 * users can have multiple lists (via references)
 * each list can have multiple items (by embedding)
 
-(__TODO__: sample documents)
 
 An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
-  hash: // a password hash,
-  lists: // an array of references to List documents
+  username: "JerryFranklin",
+  password: 23241,
+  contact: "Wechat: 13423455",
 }
 ```
 
-An Example List with Embedded Items:
+An Example Item:
 
 ```javascript
 {
-  user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
-  ],
-  createdAt: // timestamp
+  ref: 'User' // a reference to a User object
+  name: "Calculus101",
+  category: "book",
+  price: "1000",
+  openTobargain: true,
+  description:"A textbook for beginners to learn Calculus",
+  condition:"Well conditioned",
 }
 ```
 
 
 ## [Link to Commented First Draft Schema](db.mjs) 
-
-(__TODO__: create a first draft of your Schemas in db.mjs and link to it)
 
 ## Wireframes
 
@@ -77,36 +68,26 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 ## User Stories or Use Cases
 
-(__TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://en.wikipedia.org/wiki/Use_case))
-
 1. as non-registered user, I can register a new account with the site
 2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+3. as a user, I can see the infomation of all the available items for sale
+4. as a user, I can modify the filters to search for the items I want. 
+5. as a user, I can post a item that I want to sell
+6. as a user, I can check the list of all the items that I want to sell and modify their attributes if necessary or even remove them. 
 
 ## Research Topics
 
-(__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed)
-
-* (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+* (2 points) Use a CSS framework found in Semantic UI to make my website neat and beautiful
+* (3 points) Perform client side form validation using a JavaScript library
+* (3 points) Using a client side javascript we did not cover in class
+    * I have not figured what it is yet, but I guarantee it will take a LOT of effort. 
+* (2 points) Using a sever side javascript we did not cover in class
+    * I have not figured what it is yet, but I guarantee it will take a LOT of effort. 
 
 10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit)
 
 
 ## [Link to Initial Main Project File](app.mjs) 
-
-(__TODO__: create a skeleton Express application with a package.json, app.mjs, views folder, etc. ... and link to your initial app.mjs)
 
 ## Annotations / References Used
 
