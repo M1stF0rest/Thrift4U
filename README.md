@@ -46,25 +46,26 @@ An Example Item:
 
 ## Wireframes
 
-(__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.)
+/list- page for listing all existing items
 
-/list/create - page for creating a new shopping list
+![list create](documentation/list.jpg)
 
-![list create](documentation/list-create.png)
+/list/post - page for posting one item
 
-/list - page for showing all shopping lists
+![list](documentation/post.jpg)
 
-![list](documentation/list.png)
+/list/mylist - page for showing all the items posted by the user
 
-/list/slug - page for showing specific shopping list
+![list](documentation/mylist.jpg)
 
-![list](documentation/list-slug.png)
+/list/mylist/modify - page for modifying the infomation of an item posted by the user
+
+![list](documentation/modify.jpg)
 
 ## Site map
 
-(__TODO__: draw out a site map that shows how pages are related to each other)
+![list create](documentation/sitemap.jpg)
 
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
 
 ## User Stories or Use Cases
 
@@ -84,15 +85,11 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 * (2 points) Using a sever side javascript we did not cover in class
     * I have not figured what it is yet, but I guarantee it will take a LOT of effort. 
 
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit)
+10 points total out of 8 required points 
 
 
 ## [Link to Initial Main Project File](app.mjs) 
 
 ## Annotations / References Used
-
-(__TODO__: list any tutorials/references/etc. that you've based your code off of)
-
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
+Need to be updated later
 
