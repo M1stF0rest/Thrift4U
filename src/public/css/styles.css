@@ -1,0 +1,11 @@
+body{
+    background-image: url('../img/thrift4u-logo.png');
+    background-size: cover;
+}
+.button-xlarge{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color:transparent;
+    font-size: 150%;
+}
+
+
