@@ -10,6 +10,14 @@
     <div class="background-container">
         <img src="img/thrift4u-logo.png" alt="Background image">
       </div>
+    {{#if user}}
+    <a>asdfas</a>
+    <header>
+    <nav>
+    Welcome, {{user.username}}!
+    </nav>
+    </header>
+    {{/if}}
       {{{ body }}}
 </body>
 </html>

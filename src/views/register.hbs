@@ -1,17 +1,22 @@
-<form class="pure-form pure-form-aligned" id = 'registerform'>
+{{#if message}}
+<fieldset class="error">{{ message }}</fieldset>
+{{/if}}
+ <button onclick="location.href='/login'"class="button-xlarge pure-button"id = 'loginbutton'>Login</button>
+ <button onclick="location.href='/register'"class="button-xlarge pure-button"id = 'registerbutton'>Register</button>
+<form class="pure-form pure-form-aligned" id = 'registerform' method="POST" action="register">
     <fieldset>
         <legend>Register your account</legend>
         <div class="pure-control-group">
-            <label for="register-name">Username</label>
-            <input type="text" id="register-name" placeholder="Username" />
+            <label for="register_name">Username</label>
+            <input type="text" id="register_name" name = "register_name" placeholder="Username" />
         </div>
         <div class="pure-control-group">
-            <label for="register-password">Password</label>
-            <input type="password" id="register-password" placeholder="Password" />
+            <label for="register_password">Password</label>
+            <input type="text" id="register_password" name = "register_password"  placeholder="Password" />
         </div>
         <div class="pure-control-group">
-            <label for="register-name">Contact</label>
-            <input type="text" id="register-contact" placeholder="Contact" />
+            <label for="register_contact">Contact</label>
+            <input type="text" id="register_contact" name = "register_contact" placeholder="Contact" />
             <span class="pure-form-message-inline">You can use your email, phone, wechatid,etc...</span>
         </div>
         <div class="pure-controls">

@@ -1,13 +1,18 @@
-<form class="pure-form pure-form-aligned" id = 'loginform'>
+{{#if message}}
+<fieldset class="error">{{ message }}</fieldset>
+{{/if}}
+ <button onclick="location.href='/login'"class="button-xlarge pure-button" id = 'loginbutton'>Login</button>
+ <button onclick="location.href='/register'"class="button-xlarge pure-button"id = 'registerbutton'>Register</button>
+<form class="pure-form pure-form-aligned" id = 'loginform'method="POST" action="login">
     <fieldset>
         <legend>Login to your account</legend>
         <div class="pure-control-group">
             <label for="login-name">Username</label>
-            <input type="text" id="login-name" placeholder="Username" />
+            <input type="text" id="login-name" placeholder="Username" name ="username"/>
         </div>
         <div class="pure-control-group">
             <label for="login-password">Password</label>
-            <input type="password" id="login-password" placeholder="Password" />
+            <input type="password" id="login-password" placeholder="Password" name ="password"/>
         </div>
         <div class="pure-controls">
             <button type="submit" class="pure-button">Login</button>
