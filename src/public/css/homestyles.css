@@ -1,0 +1,24 @@
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .background-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+/* for the set up of the homepage */
+.button-xlarge{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color:transparent;
+    font-size: 150%;
+    opacity: 1;
+}
+
+
