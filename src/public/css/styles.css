@@ -17,7 +17,7 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: x-large;
     left: 50%;
-    z-index: 1;
+    /* z-index: 3; */
     background-color: transparent;
   }
   #loginbutton{
@@ -32,14 +32,17 @@
     font-size: 150%;
     opacity: 1;
   }
-  #header{
+  #Welcome{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color:transparent;
-    font-size: 150%;
+    font-size: 200%;
+    text-align: center;
+    top :1%
   }
   .pure-menu{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
+
 /* for formats of the login page */
 #loginform{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -61,5 +64,41 @@
   transform: translate(-50%, -50%) scale(1.5);
 }
 #registerform pure-controls button{
+  background-color: transparent;
+}
+
+/* for formats of the changepwd page */
+#changepwdform{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+#changepwdform pure-controls button{
+  background-color: transparent;
+}
+
+/* for formats of the changeusername page */
+#changeusernameform{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+#changeusernameform pure-controls button{
+  background-color: transparent;
+}
+
+/* for formats of the changecontact page */
+#changecontactform{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+#changecontactform pure-controls button{
   background-color: transparent;
 }

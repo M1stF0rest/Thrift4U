@@ -1,0 +1,20 @@
+
+<form class="pure-form pure-form-aligned" id = 'changepwdform'method="POST" action="changepwd">
+    <fieldset>
+        <legend>Change your password</legend>
+        {{#if message}}
+        <legend class="error">{{ message }}</legend>
+        {{/if}}
+        <div class="pure-control-group">
+            <label for="original_pwd">Original Password</label>
+            <input type="text" id="original_pwd"  name ="original_pwd"/>
+        </div>
+        <div class="pure-control-group">
+            <label for="new_pwd">New Password</label>
+            <input type="text" id="new_pwd" name ="new_pwd"/>
+        </div>
+        <div class="pure-controls">
+            <button type="submit" class="pure-button">Change</button>
+        </div>
+    </fieldset>
+</form>

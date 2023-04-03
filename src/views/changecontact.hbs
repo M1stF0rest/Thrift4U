@@ -1,0 +1,15 @@
+<form class="pure-form pure-form-aligned" id = 'changecontactform'method="POST" action="changecontact">
+    <fieldset>
+        <legend>Change your contact</legend>
+        {{#if message}}
+        <legend class="error">{{ message }}</legend>
+        {{/if}}
+        <div class="pure-control-group">
+            <label for="new_pwd">New Contact</label>
+            <input type="text" id="new_contact" name ="new_contact"/>
+        </div>
+        <div class="pure-controls">
+            <button type="submit" class="pure-button">Change</button>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,15 @@
+<form class="pure-form pure-form-aligned" id = 'changeusernameform'method="POST" action="changeusername">
+    <fieldset>
+        <legend>Change your username</legend>
+        {{#if message}}
+        <legend class="error">{{ message }}</legend>
+        {{/if}}
+        <div class="pure-control-group">
+            <label for="new_pwd">New Username</label>
+            <input type="text" id="new_username" name ="new_username"/>
+        </div>
+        <div class="pure-controls">
+            <button type="submit" class="pure-button">Change</button>
+        </div>
+    </fieldset>
+</form>

@@ -1,11 +1,11 @@
-{{#if message}}
-<fieldset class="error">{{ message }}</fieldset>
-{{/if}}
- <button onclick="location.href='/login'"class="button-xlarge pure-button" id = 'loginbutton'>Login</button>
+<button onclick="location.href='/login'"class="button-xlarge pure-button" id = 'loginbutton'>Login</button>
  <button onclick="location.href='/register'"class="button-xlarge pure-button"id = 'registerbutton'>Register</button>
 <form class="pure-form pure-form-aligned" id = 'loginform'method="POST" action="login">
     <fieldset>
         <legend>Login to your account</legend>
+        {{#if message}}
+        <legend class="error">{{ message }}</legend>
+        {{/if}}
         <div class="pure-control-group">
             <label for="login-name">Username</label>
             <input type="text" id="login-name" placeholder="Username" name ="username"/>

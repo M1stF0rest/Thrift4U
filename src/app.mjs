@@ -30,7 +30,10 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 passport.use(new LocalStrategy(User.authenticate()));
 
-// const auth = passport.authenticate('local', { failureRedirect: '/login', failureMessage: true });
+const checkAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) { return next() }
+    res.redirect("/login")
+  };
 // ===================
 //     ROUTES
 // ===================
@@ -57,7 +60,7 @@ app.post('/login',(req, res,next) => {
             }
             else {
                 if (!user) {
-                    res.render('login',{title:'Login', message:"username or password incorrect" })
+                    res.render('login',{title:'Login', message:"Username or Password was incorrect" })
                 }
                 else {
                     req.login(user, function(err) {
@@ -90,8 +93,83 @@ app.post('/register', async(req, res) => {
     });
   });
 
-app.get('/platform',async (req, res) => {
+app.get('/platform',checkAuthenticated ,async (req, res) => {
     res.render('platform',{title:'Platform',user:req.user});
+  });
+
+app.get('/changepwd',checkAuthenticated ,async (req, res) => {
+    res.render('changepwd',{title:'Change My Password',user:req.user});
+  });
+
+app.post('/changepwd',async (req, res) => {
+    if (!req.body.original_pwd) {
+        res.render('changepwd',{title:'Change My Password', message: "Orginal password was not given",user:req.user})
+    }
+    else if (!req.body.new_pwd) {
+        res.render('changepwd',{title:'Change My Password', message: "New password was not given",user:req.user})
+    }
+    else{
+        try {
+            const user = await User.findOne({ username: req.user.username });
+            user.changePassword(req.body.original_pwd, req.body.new_pwd, function(err) {
+                if(err) {
+                         if(err.name === 'IncorrectPasswordError'){
+                             res.render('changepwd',{title:'Change My Password', message:'Your original password is incorrect!',user:req.user});
+                         }else {
+                             res.render('changepwd',{title:'Change My Password', message:'Something went wrong! Try again later.',user:req.user});
+                         }
+               } else {
+                 res.render('changepwd',{title:'Change My Password', message:'Your password has been changed successfully.',user:req.user});
+                }
+        }
+        )} catch (err) {
+            res.render('changepwd',{title:'Change My Password', message:err,user:req.user});
+        }
+    }
+  });
+app.get('/changeusername',checkAuthenticated ,async (req, res) => {
+    res.render('changeusername',{title:'Change My Username',user:req.user});
+  });
+
+app.post('/changeusername',checkAuthenticated ,async (req, res) => {
+    if (!req.body.new_username) {
+        res.render('changeusername',{title:'Change My Username', message: "New Username was not given",user:req.user})
+    }
+    else{
+        const newname = req.body.new_username;
+        const check = await User.findOne({ username: newname });
+        if (check){
+            res.render('changeusername',{title:'Change My Username', message: "This username has already existed!",user:req.user})
+        }
+        else{
+            const user = await User.findOne({ username: req.user.username });
+            user.username = newname;
+            await user.save()
+            req.login(user, function(err) {
+                if (err) { return next(err); }
+                return res.render('changeusername',{title:'Change My Username',user:user,message:'Your username has been changed successfully.'});
+              });
+        }
+    }
+  });
+
+app.get('/changecontact',checkAuthenticated ,async (req, res) => {
+    res.render('changecontact',{title:'Change My Contact',user:req.user});
+  });
+
+app.post('/changecontact',checkAuthenticated ,async (req, res) => {
+    if (!req.body.new_contact) {
+        res.render('changecontact',{title:'Change My Contact', message: "New Contact was not given",user:req.user})
+    }
+    else{
+        const user = await User.findOne({ username: req.user.username });
+        user.contact = req.body.new_contact;
+        await user.save()
+        req.login(user, function(err) {
+            if (err) { return next(err); }
+            return res.render('changecontact',{title:'Change My Contact',user:user,message:'Your contact has been changed successfully.'});
+            });
+    }
   });
 
 app.get('/logout', async function(req, res,next) {

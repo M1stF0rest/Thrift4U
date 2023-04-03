@@ -6,6 +6,9 @@
 <form class="pure-form pure-form-aligned" id = 'registerform' method="POST" action="register">
     <fieldset>
         <legend>Register your account</legend>
+        {{#if message}}
+        <legend class="error">{{ message }}</legend>
+        {{/if}}
         <div class="pure-control-group">
             <label for="register_name">Username</label>
             <input type="text" id="register_name" name = "register_name" placeholder="Username" />
