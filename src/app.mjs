@@ -12,10 +12,9 @@ const User = mongoose.model('User');
 const Item = mongoose.model('Item');
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
-
 const app = express();
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
