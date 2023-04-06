@@ -1,5 +1,3 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
-
 # Thrift4U
 
 ## Overview
@@ -11,10 +9,10 @@ Thrift4U is a web app that functions as a platform for information of second-han
 
 ## Data Model
 
-The application will store Users, Lists and Items
+The application will store Users, and Items
 
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
+* users can have multiple items 
+* but item can only have one user(via references)
 
 
 An Example User:
@@ -46,21 +44,28 @@ An Example Item:
 
 ## Wireframes
 
-/list- page for listing all existing items
+/platform- page for listing all existing items
 
-![list create](documentation/list.jpg)
+![list create](documentation/platform.png)
 
-/list/post - page for posting one item
+/postmyitem - page for posting one item
+![list](documentation/postmyitem.png)
 
-![list](documentation/post.jpg)
+/managemyitems - page for showing all the items posted by the user
 
-/list/mylist - page for showing all the items posted by the user
+![list](documentation/myitems.png)
 
-![list](documentation/mylist.jpg)
+/changeusername - page for users to change their usernames
 
-/list/mylist/modify - page for modifying the infomation of an item posted by the user
+![list](documentation/changeusername.png)
 
-![list](documentation/modify.jpg)
+/changepassword - page for users to change their passwords
+
+![list](documentation/changepassword.png)
+
+/changepassword - page for users to change their contacts
+
+![list](documentation/changecontact.png)
 
 ## Site map
 
@@ -71,19 +76,21 @@ An Example Item:
 
 1. as non-registered user, I can register a new account with the site
 2. as a user, I can log in to the site
-3. as a user, I can see the infomation of all the available items for sale
+3. as a user, I can see the infomation of all the available items for sale.
 4. as a user, I can modify the filters to search for the items I want. 
-5. as a user, I can post a item that I want to sell
+5. as a user, I can post a item that I want to sell.
 6. as a user, I can check the list of all the items that I want to sell and modify their attributes if necessary or even remove them. 
+7. as a user, I can change my username.
+8. as a user, I can change my password.
+9. as a user, I can change my contact.
 
 ## Research Topics
 
-* (2 points) Use a CSS framework found in Semantic UI to make my website neat and beautiful
-* (3 points) Perform client side form validation using a JavaScript library
-* (3 points) Using a client side javascript we did not cover in class
-    * I have not figured what it is yet, but I guarantee it will take a LOT of effort. 
-* (2 points) Using a sever side javascript we did not cover in class
-    * I have not figured what it is yet, but I guarantee it will take a LOT of effort. 
+* (2 points) Use a CSS framework (PURE) to form a consistent theme.
+* (3 points) Using a server side javascript we did not cover in class
+    * I choose to use Passport.js for user authentication. 
+* (5 points) External API
+    * I decided to use a combination of libraries for me to enable users to upload pictures, saving them in mangoDB and rendering them on the website
 
 10 points total out of 8 required points 
 
@@ -91,5 +98,7 @@ An Example Item:
 ## [Link to Initial Main Project File](app.mjs) 
 
 ## Annotations / References Used
-Need to be updated later
+Official Document for PURE.css: https://purecss.io
+Official Document for Passport.js: https://www.passportjs.org
+
 
