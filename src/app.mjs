@@ -96,6 +96,14 @@ app.get('/platform',checkAuthenticated ,async (req, res) => {
     res.render('platform',{title:'Platform',user:req.user});
   });
 
+app.get('/postmyitem',checkAuthenticated ,async (req, res) => {
+    res.render('postmyitem',{title:'Post My Item',user:req.user});
+  });
+
+app.get('/managemyitems',checkAuthenticated ,async (req, res) => {
+    res.render('managemyitems',{title:'Manage My Items',user:req.user});
+  });
+
 app.get('/changepwd',checkAuthenticated ,async (req, res) => {
     res.render('changepwd',{title:'Change My Password',user:req.user});
   });

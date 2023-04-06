@@ -1,0 +1,38 @@
+<form class="pure-form" id = "filterform">
+    <fieldset>
+        <legend>Filter your search</legend>
+         <input type="text" id="Sellername" class="Seller's name" placeholder="Seller's name"/>
+        <input type="text" id="Itemname" class="Itemname" placeholder="Item's name"/>
+        <select id="category">
+        <option value="" disabled selected hidden>Category</option>
+        <option>Clothes</option>
+        <option>Education</option>
+        <option>Entertainment</option>
+        <option>Tool</option>
+        <option>Others</option>
+        </select>
+        <select id="price">
+        <option value="" disabled selected hidden>Price</option>
+        <option>Below 10</option>
+        <option>10 - 50</option>
+        <option>50 - 100</option>
+        <option>100 - 200</option>
+        <option>Above 200</option>
+        </select>
+        <button type="submit" class="pure-button" id="filterbutton">Filter</button>
+    </fieldset>
+    <table class="pure-table pure-table-horizontal", id = "itemtable">
+    <thead>
+        <tr>
+            <th>Item's Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Condition</th>
+            <th>Seller's Name</th>
+            <th>OK to Bargain</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+</form>
