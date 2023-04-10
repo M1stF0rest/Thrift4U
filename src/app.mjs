@@ -33,6 +33,22 @@ const checkAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) { return next() }
     res.redirect("/login")
   };
+
+function removeProperties(obj) {
+    Object.keys(obj).forEach(function(key) {
+      if (obj[key] === ''|| obj[key] === undefined) {
+        delete obj[key];
+      }
+    });
+    return obj;
+  }
+// Function to prompt the user for confirmation
+function promptForConfirmation(message) {
+  return new Promise((resolve) => {
+    const confirmed = window.confirm(message);
+    resolve(confirmed);
+  });
+}
 // ===================
 //     ROUTES
 // ===================
@@ -93,16 +109,113 @@ app.post('/register', async(req, res) => {
   });
 
 app.get('/platform',checkAuthenticated ,async (req, res) => {
-    res.render('platform',{title:'Platform',user:req.user});
+  const queryobject = {};
+  if (req.query.itemname){
+    queryobject.name = {$regex : req.query.itemname};
+  }
+  queryobject.category = req.query.category;
+  queryobject.range = req.query.range;
+  Item.find(queryobject?removeProperties(queryobject):null)
+    .populate('seller',)
+    .then(function (found){
+      if (req.query.sellername){
+        found = found.filter(item => item.seller.username.includes(req.query.sellername));
+      }
+      res.render('platform',{title:'Platform',user:req.user,found:found})
+    })
+    .catch((err) => res.status(500).send(err));
   });
+
+app.post('/postmyitem',checkAuthenticated ,async (req, res) => {
+    const description = req.body.description?req.body.description:"";
+    const image= req.body.image?req.body.image:"";
+    let range = ''
+    if (req.body.price < 10){
+      range = 'Below 10';
+    }
+    else if (req.body.price <50 ){
+      range = '10 - 49';
+    }
+    else if(req.body.price < 100){
+      range = '50 - 99';
+    }
+    else if(req.body.price < 200){
+      range = '100 - 199';
+    }
+    else{
+      range = 'Above 200';
+    }
+    const item = new Item({
+      seller : req.user._id,
+      name : req.body.itemname,
+      category : req.body.category,
+      price : req.body.price,
+      condition:req.body.condition,
+      openTobargain : req.body.oktobargain?true:false,
+      description : description,
+      pic : image,
+      range :range,
+    })
+    item.save()
+       .then(() => res.redirect('/platform'))
+       .catch((err)=>res.status(500).send(err));
+  }); 
 
 app.get('/postmyitem',checkAuthenticated ,async (req, res) => {
     res.render('postmyitem',{title:'Post My Item',user:req.user});
   });
 
 app.get('/managemyitems',checkAuthenticated ,async (req, res) => {
-    res.render('managemyitems',{title:'Manage My Items',user:req.user});
+    Item.find({seller : req.user._id})
+      .then((found)=> res.render('managemyitems',{title:'Manage My Items',user:req.user,found:found}))
+      .catch((err)=>res.status(500).send(err));
   });
+
+app.get('/modify/:itemid',checkAuthenticated ,async (req, res) => {
+   const id  = req.params.itemid;
+   const item = await Item.findOne({_id: id});
+   const renderobj = {};
+   renderobj.title = 'Modify';
+   renderobj.user = req.user;
+   renderobj.id = id;
+   renderobj.itemname = item.name;
+   renderobj.category = item.category;
+   renderobj.price = item.price;
+   renderobj.condition = item.condition;
+   renderobj.description = item.description;
+   renderobj.checked = item.openTobargain?"checked":"";
+   res.render('modify',renderobj);
+});
+
+app.post('/modify/:itemid',checkAuthenticated ,async (req, res) => {
+  const openTobargain = req.body.newoktobargain?true:false;
+  const update = removeProperties(req.body);
+  update.openTobargain  = openTobargain;
+  if (req.body.price){
+    if (req.body.price < 10){
+      update.range = 'Below 10';
+    }
+    else if (req.body.price <50 ){
+      update.range = '10 - 49';
+    }
+    else if(req.body.price < 100){
+      update.range = '50 - 99';
+    }
+    else if(req.body.price < 200){
+      update.range = '100 - 199';
+    }
+    else{
+      update.range = 'Above 200';
+    }
+  }
+  await Item.findOneAndUpdate({_id : req.params.itemid},update);
+  res.redirect("/managemyitems");
+});
+
+app.get('/delete/:itemid',checkAuthenticated ,async (req, res) => {
+  const id  = req.params.itemid;
+  await Item.deleteOne({_id:id});
+});
 
 app.get('/changepwd',checkAuthenticated ,async (req, res) => {
     res.render('changepwd',{title:'Change My Password',user:req.user});

@@ -11,5 +11,31 @@
         </tr> 
     </thead>
     <tbody>
+            {{#each found}}
+    <tr>
+        <td>
+            {{this.name}}
+        </td>
+        <td>
+            {{this.category}}
+        </td>  
+        <td>
+            {{this.price}}
+        </td>  
+        <td>
+            {{this.condition}}
+        </td>  
+        <td>
+            {{this.openTobargain}}
+        </td>   
+        <td>
+            <a href="/modify/{{this._id}}">Modify</a>
+        </td>  
+         <td>
+           <script src="/clientjs/confirm.js"> </script>
+           <a href = '/managemyitems' onclick = "confirmDelete('{{this._id}}')">Delete item</a>
+        </td>        
+    </tr>
+        {{/each}}
     </tbody>
 </table>

@@ -1,0 +1,54 @@
+<form class="pure-form pure-form-aligned" id = "modifyform" method="POST" action="{{id}}">
+    <fieldset>
+        <legend>You only need to type in the field that you want to change</legend>
+        {{#if message}}
+        <legend class="error">{{ message }}</legend>
+        {{/if}}
+        <div class="pure-control-group">
+            <label for="newname" >Item's name</label>
+            <input type="text" id="newname"  name ="name" placeholder={{itemname}}>
+        </div>
+        <div class="pure-control-group">
+                <label for="newcategory">Category</label>
+                <select id="newcategory" name = "category">
+                <option value="" disabled selected hidden>{{category}}</option>
+                <option>Clothes</option>
+                <option>Education</option>
+                <option>Entertainment</option>
+                <option>Tool</option>
+                <option>Others</option>
+                 </select>
+        </div>
+        <div class="pure-control-group">
+            <label for="newprice">Price</label>
+            <input type="number" id="newprice"  name ="price"  placeholder={{price}}>
+        </div>
+
+        <div class="pure-control-group">
+                <label for="newcondition">Condition</label>
+                <select id="newcondition" name = "condition" >
+                <option value="" disabled selected hidden>{{condition}}</option>
+                <option>Well Conditioned</option>
+                <option>Little Stain</option>
+                <option>Mild Usage</option>
+                <option>Used a Lot</option>
+                 </select>
+        </div>
+        <div class="pure-controls">
+            <label for="newoktobargain" class="pure-checkbox">
+            <input type="checkbox" id="newoktogargain" name = "newoktobargain" {{checked}}> OK to Bargain
+            </label>
+        </div>
+        <div class="pure-control-group">
+            <label for="newdescrtiption" name = "description">Descrtiption</label>
+            <textarea class="pure-input-1-2" placeholder={{description}} name = "description"></textarea>
+        </div>
+         <div class="pure-control-group">
+            <label for="newimage" name = "newimage">Image</label>
+            <input type="file" id="newimage" name="image" accept="image/*">
+        </div>
+        <div class="pure-controls">
+            <button type="submit" class="pure-button">Modify</button>
+        </div>
+    </fieldset>
+</form>

@@ -1,9 +1,9 @@
-<form class="pure-form" id = "filterform">
+<form class="pure-form" id = "filterform" method = "GET" action="/platform">
     <fieldset>
-        <legend>Filter your search</legend>
-         <input type="text" id="Sellername" class="Seller's name" placeholder="Seller's name"/>
-        <input type="text" id="Itemname" class="Itemname" placeholder="Item's name"/>
-        <select id="category">
+        <legend>Filter Your Search</legend>
+         <input type="text" id="Sellername" class="Seller's name" placeholder="Seller's name" name = 'sellername'>
+        <input type="text" id="Itemname" class="Itemname" placeholder="Item's name" name = 'itemname'>
+        <select id="category" name = 'category'>
         <option value="" disabled selected hidden>Category</option>
         <option>Clothes</option>
         <option>Education</option>
@@ -11,12 +11,12 @@
         <option>Tool</option>
         <option>Others</option>
         </select>
-        <select id="price">
+        <select id="range" name='range'>
         <option value="" disabled selected hidden>Price</option>
         <option>Below 10</option>
-        <option>10 - 50</option>
-        <option>50 - 100</option>
-        <option>100 - 200</option>
+        <option>10 - 49</option>
+        <option>50 - 99</option>
+        <option>100 - 199</option>
         <option>Above 200</option>
         </select>
         <button type="submit" class="pure-button" id="filterbutton">Filter</button>
@@ -33,6 +33,28 @@
         </tr>
     </thead>
     <tbody>
+         {{#each found}}
+    <tr>
+        <td>
+            {{this.name}}
+        </td>
+        <td>
+            {{this.category}}
+        </td>  
+        <td>
+            {{this.price}}
+        </td>  
+        <td>
+            {{this.condition}}
+        </td>  
+        <td>
+            {{this.seller.username}}
+        </td>   
+        <td>
+            {{this.openTobargain}}
+        </td>        
+    </tr>
+    {{/each}}
     </tbody>
 </table>
 </form>

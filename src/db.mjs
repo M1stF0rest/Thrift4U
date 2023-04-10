@@ -48,6 +48,8 @@ const itemSchema = new mongoose.Schema({
   openTobargain: Boolean,
   description: String,
   condition:String,
+  pic:Buffer,
+  range: String,
 });
 
 userSchema.plugin(passportLocalMongoose); 

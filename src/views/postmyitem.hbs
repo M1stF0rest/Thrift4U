@@ -6,12 +6,12 @@
         <legend class="error">{{ message }}</legend>
         {{/if}}
         <div class="pure-control-group">
-            <label for="itemname">Item's name</label>
-            <input type="text" id="itemname"  name ="itemname"/>
+            <label for="itemname" >Item's name</label>
+            <input type="text" id="itemname"  name ="itemname" required>
         </div>
         <div class="pure-control-group">
                 <label for="category">Category</label>
-                <select id="category">
+                <select id="category" name = "category" required>
                 <option>Clothes</option>
                 <option>Education</option>
                 <option>Entertainment</option>
@@ -21,11 +21,11 @@
         </div>
         <div class="pure-control-group">
             <label for="price">Price</label>
-            <input type="text" id="price"  name ="price"/>
+            <input type="number" id="price"  name ="price" required>
         </div>
         <div class="pure-control-group">
                 <label for="condition">Condition</label>
-                <select id="condition">
+                <select id="condition" name = "condition" required>
                 <option>Well Conditioned</option>
                 <option>Little Stain</option>
                 <option>Mild Usage</option>
@@ -33,14 +33,18 @@
                  </select>
         </div>
         <div class="pure-controls">
-            <label for="oktobargain" class="pure-checkbox">
-            <input type="checkbox" id="oktogargain" /> OK to Bargain
+            <label for="oktobargain" class="pure-checkbox">  OK to Bargain 
+            <input type="checkbox" id="oktobargain" name = "oktobargain">
             </label>
             <span class="pure-form-message-inline">Information below is optional</span>
         </div>
         <div class="pure-control-group">
-            <label for="descrtiption">Descrtiption</label>
-            <textarea class="pure-input-1-2" ></textarea>
+            <label for="description" name = "description">Description</label>
+            <textarea class="pure-input-1-2" name = "description"></textarea>
+        </div>
+         <div class="pure-control-group">
+            <label for="image" name = "image">Image</label>
+            <input type="file" id="image" name="image" accept="image/*">
         </div>
         <div class="pure-controls">
             <button type="submit" class="pure-button">Post</button>

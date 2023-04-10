@@ -128,9 +128,14 @@ select:has(option:disabled:checked[hidden]) {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1.5);
+  transform: translate(-50%, -50%) scale(1.2);
 }
 #postmyitemform pure-controls button{
+  background-color: transparent;
+}
+
+input[type=file] {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color: transparent;
 }
 
@@ -141,4 +146,17 @@ select:has(option:disabled:checked[hidden]) {
   position: absolute;
   top: 47px;
   left: 20%;
+}
+
+/* for formats of the Modify page */
+#modifyform{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+#modifyform pure-controls button{
+  background-color: transparent;
 }
