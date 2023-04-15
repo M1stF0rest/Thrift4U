@@ -8,6 +8,7 @@ import url from 'url';
 import exphbs from 'express-handlebars';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
+import multer from 'multer';
 const User = mongoose.model('User');
 const Item = mongoose.model('Item');
 const __filename = fileURLToPath(import.meta.url);
@@ -15,6 +16,15 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, path.join(__dirname, 'public/uploads'))
+  },
+  filename: (req, file, cb) => {
+      cb(null, Date.now()+'-'+file.originalname)
+  }
+});
+var upload = multer({ storage: storage });
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
@@ -49,9 +59,10 @@ function promptForConfirmation(message) {
     resolve(confirmed);
   });
 }
-// ===================
-//     ROUTES
-// ===================
+
+// =================================
+//     ROUTES FOR HOMEPAGE
+// =================================
 
 app.get('/', async (req, res) => {
     res.render('home',{title:'Homepage',layout:'homelayout'});
@@ -108,6 +119,14 @@ app.post('/register', async(req, res) => {
     });
   });
 
+
+// =================================
+//     ROUTES FOR PlATFORM FUNCTIONS
+// =================================
+
+
+
+
 app.get('/platform',checkAuthenticated ,async (req, res) => {
   const queryobject = {};
   if (req.query.itemname){
@@ -126,9 +145,10 @@ app.get('/platform',checkAuthenticated ,async (req, res) => {
     .catch((err) => res.status(500).send(err));
   });
 
-app.post('/postmyitem',checkAuthenticated ,async (req, res) => {
+app.post('/postmyitem',checkAuthenticated ,upload.single('image'),async (req, res) => {
     const description = req.body.description?req.body.description:"";
-    const image= req.body.image?req.body.image:"";
+    const imagepath= req.file?"/uploads/"+req.file.filename:"";
+    const imagetype= req.file?req.file.mimetype:"";
     let range = ''
     if (req.body.price < 10){
       range = 'Below 10';
@@ -153,7 +173,8 @@ app.post('/postmyitem',checkAuthenticated ,async (req, res) => {
       condition:req.body.condition,
       openTobargain : req.body.oktobargain?true:false,
       description : description,
-      pic : image,
+      imagepath : imagepath,
+      imagetype: imagetype,
       range :range,
     })
     item.save()
@@ -216,6 +237,28 @@ app.get('/delete/:itemid',checkAuthenticated ,async (req, res) => {
   const id  = req.params.itemid;
   await Item.deleteOne({_id:id});
 });
+
+app.get('/detail/:itemid',checkAuthenticated ,async (req, res) => {
+  const id  = req.params.itemid;
+  const item = await Item.findOne({_id: id});
+  const seller  =await User.findOne({_id:item.seller});
+  const renderobj = {};
+  renderobj.path = item.imagepath
+  renderobj.title = 'Details';
+  renderobj.user = req.user;
+  renderobj.id = id;
+  renderobj.itemname = item.name;
+  renderobj.category = item.category;
+  renderobj.price = item.price;
+  renderobj.condition = item.condition;
+  renderobj.description = item.description;
+  renderobj.checked = item.openTobargain?"checked":"";
+  renderobj.seller = seller;
+  res.render('detail',renderobj);
+});
+// =================================
+//     ROUTES FOR ACCOUNT SETTINGS
+// =================================
 
 app.get('/changepwd',checkAuthenticated ,async (req, res) => {
     res.render('changepwd',{title:'Change My Password',user:req.user});

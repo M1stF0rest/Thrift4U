@@ -48,7 +48,8 @@ const itemSchema = new mongoose.Schema({
   openTobargain: Boolean,
   description: String,
   condition:String,
-  pic:Buffer,
+  imagepath:String,
+  imagetype:String,
   range: String,
 });
 

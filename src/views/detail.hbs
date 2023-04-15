@@ -1,0 +1,19 @@
+<div id = "container">
+    <h2>{{itemname}}</h2>
+    <h4>Info:</h4>
+    <div>Seller: {{seller.username}}</div>
+    <div>Seller's contact: {{seller.contact}}</div>
+    <div>Condition: {{condition}}</div>
+    <div>Price: {{price}}</div>
+    <div>Category: {{category}} </div>
+    {{#if checked}}
+    <div>This Item is open to bargain!</div>
+    {{/if}}
+    <h4>Description:</h4>
+    {{description}}
+    <h4>Image:</h4>
+    <img id= 'detailimg' src= "{{path}}" alt="NO IMAGE WAS PROVIDED">
+</div>
+
+
+
