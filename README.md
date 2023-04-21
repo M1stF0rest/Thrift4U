@@ -29,13 +29,18 @@ An Example Item:
 
 ```javascript
 {
-  ref: 'User' // a reference to a User object
+  seller: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },// a reference to a User object
   name: "Calculus101",
-  category: "book",
-  price: "1000",
+  category: "Education",
+  price: 1000,
   openTobargain: true,
   description:"A textbook for beginners to learn Calculus",
   condition:"Well conditioned",
+  imagepath:String,
+  range: String,
 }
 ```
 
@@ -47,6 +52,9 @@ An Example Item:
 /platform- page for listing all existing items
 
 ![list create](documentation/platform.png)
+
+/detail- page for showing the details of the item
+![list create](documentation/detail.png)
 
 /postmyitem - page for posting one item
 ![list](documentation/postmyitem.png)
@@ -83,6 +91,7 @@ An Example Item:
 7. as a user, I can change my username.
 8. as a user, I can change my password.
 9. as a user, I can change my contact.
+10. as a user, I can see the details of an item
 
 ## Research Topics
 
@@ -90,9 +99,9 @@ An Example Item:
 * (3 points) Using a server side javascript we did not cover in class
     * I choose to use Passport.js for user authentication. 
 * (5 points) External API
-    * I decided to use a combination of libraries for me to enable users to upload pictures, saving them in mangoDB and rendering them on the website
+    * I decided to use multer to enable the user to upload their images to the server, and combine it with mongoose to make it appear on the site. 
 
-10 points total out of 8 required points 
+10 points total out of 10 required points 
 
 
 ## [Link to Initial Main Project File](app.mjs) 
@@ -100,5 +109,6 @@ An Example Item:
 ## Annotations / References Used
 Official Document for PURE.css: https://purecss.io
 Official Document for Passport.js: https://www.passportjs.org
+Official Document for Multer.js: https://www.npmjs.com/package/multer
 
 
